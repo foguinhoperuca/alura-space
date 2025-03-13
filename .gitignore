@@ -133,3 +133,5 @@ dmypy.json
 *~*
 logs/*
 static/
+venv*
+*.swp
