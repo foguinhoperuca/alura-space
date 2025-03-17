@@ -24,3 +24,15 @@ def index(request):
 
 def image(request):
     return render(request, 'gallery/image.html')
+
+
+def search(request):
+    # FIXME order by date instead name and filter by published
+    photos = Photograph.objects.order_by("name")
+
+    if "search" in request.GET:
+        name_to_search = request.GET['search']
+        if name_to_search:
+            photos = photos.filter(name__icontains=name_to_search)
+
+    return render(request, 'gallery/search.html', {"cards": photos})
