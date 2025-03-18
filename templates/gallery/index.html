@@ -22,10 +22,14 @@
                             {% if cards %}
                             {% for info in cards %}
                             <li class="card">
-                                <a href="{% url 'image' infor.id %}">
-                                    <img class="card__imagem" src="{% static '/assets/imagens/galeria/carina-nebula.png' %}{{info.photo}}" alt="photo">
+                                <a href="{% url 'image' info.id %}">
+                                    {% if info.photo == "" or info.photo == null %}
+                                    <img class="card__imagem" src="{% static '/assets/imagens/galeria/not-found.png' %}" alt="photo">
+                                    {% else %}
+                                    <img class="card__imagem" src="{{ info.photo.url }}" alt="photo">
+                                    {% endif %}
                                 </a>
-                                <span class="card__tag">Estrelas</span>
+                                <span class="card__tag">{{ info.category }}</span>
                                 <div class="card__info">
                                 <p class="card__titulo">{{ info.name }}</p>
                                     <div class="card__texto">

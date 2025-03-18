@@ -135,3 +135,4 @@ logs/*
 static/
 venv*
 *.swp
+media/*

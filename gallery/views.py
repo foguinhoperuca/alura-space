@@ -5,7 +5,7 @@ from gallery.models import Photograph
 
 
 def index(request):
-    data_models = Photograph.objects.all()
+    data_models = Photograph.objects.filter(published=True).order_by('-photo_date')
 
     return render(request, 'gallery/index.html', {"cards": data_models})
 

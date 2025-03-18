@@ -4,8 +4,10 @@ from gallery.models import Photograph
 
 
 class PhotographModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'legend',)
+    list_display = ('name', 'legend', 'published',)
     list_display_links = ('name', 'legend',)
+    list_filter = ('category',)
+    list_editable = ('published',)
     search_fields = ('name',)
     list_per_page = 100
     ordering = ('name',)
