@@ -7,7 +7,7 @@ from django.db import models
 CATEGORY_OPTIONS: List[Tuple[str, str]] = [
     ("NEBULA", "nebula"),
     ("STAR", "star"),
-    ("GALLAXY", "gallaxy"),
+    ("galaxy", "galaxy"),
     ("PLANET", "planet"),
 ]
 

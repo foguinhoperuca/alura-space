@@ -1,41 +1,41 @@
-{% extends 'galeria/base.html' %}
+{% extends 'gallery/base.html' %}
 {% load static %}
 {% block content %}
             <section class="conteudo">
                 <section class="banner">
                     <img class="banner__imagem" src="{% static '/assets/imagens/Banner(2).png' %}" alt="banner Alura Space">
-                    <h1 class="banner__titulo"> A galeria mais completa de fotos do espa?o!</h1>
+                    <h1 class="banner__titulo"> The best gallery in space!!</h1>
                 </section>
                 <section class="tags">
-                    <p class="tags__titulo">Busque por tags:</p>
+                    <p class="tags__titulo">Search by tags:</p>
                     <ul class="tags__lista">
-                        <li class="tags__tag">Nebulosa</li>
-                        <li class="tags__tag">Estrela</li>
-                        <li class="tags__tag">Gal?xia</li>
-                        <li class="tags__tag">Planeta</li>
+                        <li class="tags__tag">Nebula</li>
+                        <li class="tags__tag">Star</li>
+                        <li class="tags__tag">Ggalaxy</li>
+                        <li class="tags__tag">Planet</li>
                     </ul>
                 </section>
                 <section class="galeria">
                     <div class="cards">
-                        <h2 class="cards__titulo">Navegue pela galeria</h2>
+                        <h2 class="cards__titulo">Surf by</h2>
                         <ul class="cards__lista">
                             {% if cards %}
-                            {% for fotografia in cards %}
+                            {% for photo in cards %}
                             <li class="card">
-                                <a href="{% url 'imagem' fotografia.id %}">
-                                {% if fotografia.foto == "" or fotografia.foto == null %}
+                                <a href="{% url 'image' photo.id %}">
+                                {% if photo.photo == "" or photo.photo == null %}
                                     <img class="card__imagem" src="{% static '/assets/imagens/galeria/not-found.png'%}" alt="foto">
                                 {% else %}
-                                    <img class="card__imagem" src="{{ fotografia.foto.url }}" alt="foto">
+                                    <img class="card__imagem" src="{{ photo.photo.url }}" alt="foto">
                                 {% endif %}
                                 </a>
-                                <span class="card__tag">Estrelas</span>
+                                <span class="card__tag">{{photo.category}}</span>
                                 <div class="card__info">
-                                    <p class="card__titulo">{{fotografia.nome}}</p>
+                                    <p class="card__titulo">{{photo.name}}</p>
                                     <div class="card__texto">
-                                        <p class="card__descricao">{{fotografia.legenda}}</p>
+                                        <p class="card__descricao">{{photo.legend}}</p>
                                         <span>
-                                            <img src="{% static '/assets/?cones/1x/favorite_outline.png' %}" alt="?cone de cora??o">
+                                            <img src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
                                         </span>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                             {% endfor %}
                             {% else %}
                             <div class="imagem__texto">
-                                <p>Fotografias n?o encontradas</p>
+                                <p>Photos not found</p>
                             </div>
                             {% endif %}
                         </ul>

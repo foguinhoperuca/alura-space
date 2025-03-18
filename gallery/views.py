@@ -19,8 +19,7 @@ def image(request, photo_id: int):
 
 
 def search(request):
-    # FIXME order by date instead name and filter by published
-    photos = Photograph.objects.order_by("name")
+    photos = Photograph.objects.order_by("photo_date").filter(published=True)
 
     if "search" in request.GET:
         name_to_search = request.GET['search']
