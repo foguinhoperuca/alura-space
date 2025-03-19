@@ -1,9 +1,10 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 
 from gallery.models import Photograph
 
 
-class PhotographModelAdmin(admin.ModelAdmin):
+class PhotographModelAdmin(ModelAdmin):
     list_display = ('name', 'legend', 'published',)
     list_display_links = ('name', 'legend',)
     list_filter = ('category',)

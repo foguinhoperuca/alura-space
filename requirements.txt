@@ -10,3 +10,4 @@ Pillow
 
 asgiref
 sqlparse
+django-unfold

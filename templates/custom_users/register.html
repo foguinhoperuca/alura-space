@@ -34,16 +34,23 @@
         <main class="principal">
             <section class="menu-lateral">
                 <nav class="menu-lateral__navegacao">
-                    <a href="{% url 'index' %}"><img src="{% static '/assets/?cones/1x/Home - ativo.png' %}"> Home</a>
-                    <a href="{% url 'login' %}"><img src="{% static '/assets/?cones/1x/Mais vistas - inativo.png' %}"> Login</a>
-                    <a href="{% url 'register' %}"><img src="{% static
-                        '/assets/?cones/1x/Novas - inativo.png' %}"> Register</a>
-                    <a href="#"><img src="{% static '/assets/?cones/1x/Surpreenda-me - inativo.png' %}"> Logout</a>
+                    <a href="{% url 'index' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Home</a>
+                    <a href="{% url 'login' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Login</a>
+                    <a href="{% url 'register' %}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> Register</a>
+                    <a href="#"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Logout</a>
                 </nav>
             </section>
             <section class="galeria" style="margin-left: 5em">
-                <form action="" method="">
+                <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
                     <div class="row">
+                        {% for field in form.visible_fields %}
+                        <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
+                            <label for="{{ field.if_for_label }}" style="color:#D9D9D9; margin-bottom: 5px;"><b>{{ field.label }}</b></label>
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+                        <!--
                         <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
                             <label for="nome_cadastro" style="color:#D9D9D9;
                                 margin-bottom: 5px;"><b>Full Name</b></label>
@@ -65,6 +72,7 @@
                             <input type="password" class="form-control"
                             name="password2" placeholder="Type your password again!!" required>
                         </div>
+                        -->
                         <div class="col-12 text-center">
                             <button class="btn btn-success col-12"
                                 style="padding: top 5px;" type="submit">Create Account</button>
