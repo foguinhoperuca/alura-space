@@ -1,10 +1,15 @@
-from django.shortcuts import get_object_or_404, render
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 
 from gallery.models import Photograph
 
 
 def index(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'User is not logged!!')
+        return redirect('login')
+
     data_models = Photograph.objects.filter(published=True).order_by('-photo_date')
 
     return render(request, 'gallery/index.html', {"cards": data_models})
@@ -19,6 +24,10 @@ def image(request, photo_id: int):
 
 
 def search(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'User is not logged!!')
+        return redirect('login')
+
     photos = Photograph.objects.order_by("photo_date").filter(published=True)
 
     if "search" in request.GET:

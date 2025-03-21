@@ -38,6 +38,15 @@ def login(request):
     return render(request, 'custom_users/login.html', context)
 
 
+def logout(request):
+    auth.logout(request)
+    msg: str = 'Logout was successfully!!'
+    print(msg)
+    messages.success(request, msg)
+
+    return redirect('login')
+
+
 def register(request):
     context: Dict = {}
     form: RegisterForms = RegisterForms()
@@ -45,22 +54,35 @@ def register(request):
 
     if request.method == 'POST':
         form = RegisterForms(request.POST)
+        context['form'] = form
 
+        msg: str = ''
         if form.is_valid():
+            print('IS VALID!!')
             if form['password'].value() != form['confirm_password'].value():
+                msg = 'Invalid password: confirmation do not match!!'
+                print(msg)
+                messages.error(request, msg)
 
                 return redirect('register')
 
             if User.objects.filter(username=form['username'].value()).exists():
+                msg = f'User {form["username"].value()} already exists!!'
+                print(msg)
+                messages.error(request, msg)
+
                 return redirect('register')
 
-            # print(form['username'].value())
-            # print(form['email'].value())
-            # print(form['password'].value())
-            # print(form['confirm_password'].value())
             user = User.objects.create_user(username=form['username'].value(), email=form['email'].value(), password=form['password'].value())
             user.save()
+            msg = f'User {form["username"].value()} was successfully created!!'
+            print(msg)
+            messages.success(request, msg)
 
             return redirect('login')
+        else:
+            msg = 'Invalid data! Please fix it!!'
+            print(msg)
+            messages.error(request, msg)
 
     return render(request, 'custom_users/register.html', context)

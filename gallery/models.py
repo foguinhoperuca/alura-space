@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List, Tuple
 
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -20,6 +21,7 @@ class Photograph(models.Model):
     category = models.CharField(max_length=128, null=False, blank=False, choices=CATEGORY_OPTIONS, default="")
     published = models.BooleanField(default=False)
     photo_date = models.DateTimeField(default=datetime.now, blank=False)
+    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=False, related_name='user')
 
     def __str__(self):
         return f"Photograph: [name={self.name}]"

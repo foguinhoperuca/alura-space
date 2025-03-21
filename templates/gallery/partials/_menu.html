@@ -2,8 +2,6 @@
 <div class="pagina-inicial">
         <header class="cabecalho">
             <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
-            {{ messages }}<br />
-            LALALAL
             {% for message in messages %}
             <div class="alert alert-primary"><p id="messages">{{message}}</p></div>
             {% endfor %}
@@ -27,5 +25,6 @@
                     <a href="#"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> More views</a>
                     <a href="#"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> New</a>
                     <a href="#"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Surprise me!!</a>
+                    <a href="{% url 'logout' %}"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Logout</a>
                 </nav>
             </section>
