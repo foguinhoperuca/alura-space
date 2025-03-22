@@ -19,10 +19,8 @@
 <body>
     <div class="pagina-inicial">
         <header class="cabecalho">
-            <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
-            {% for message in messages %}
-            <div class="alert alert-primary"><p id="messages">{{message}}</p></div>
-            {% endfor %}
+          <a href="https://cursos.alura.com.br/formacao-django"><img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo da Alura Space" /></a>
+            {% include 'partials/_alerts.html' %}
             <div class="cabecalho__busca">
                 <div class="busca__fundo">
                     <form action="{% url 'search' %}">
@@ -53,7 +51,6 @@
                             {{ field }}
                         </div>
                         {% for error in field.errors %}
-                        <!-- FIXME alert-danger isn't working... -->
                         <div class="alert alert-danger">
                             {{ error }}
                         </div>
@@ -70,4 +67,4 @@
     </div>
 </body>
 
-{% include 'gallery/partials/_footer.html' %}
+{% include 'partials/_footer.html' %}

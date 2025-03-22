@@ -58,7 +58,7 @@ def register(request):
 
         msg: str = ''
         if form.is_valid():
-            print('IS VALID!!')
+            # TODO move it to run validations in forms
             if form['password'].value() != form['confirm_password'].value():
                 msg = 'Invalid password: confirmation do not match!!'
                 print(msg)

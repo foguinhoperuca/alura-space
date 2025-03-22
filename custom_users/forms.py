@@ -27,6 +27,6 @@ class RegisterForms(forms.Form):
 
         if password and confirm:
             if password != confirm:
-                raise forms.ValidationError('Password and confirmation should matched!')
+                raise forms.ValidationError('Password and confirmation should match!')
             else:
                 return confirm
