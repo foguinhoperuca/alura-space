@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 
-from gallery.models import Photograph
+from apps.gallery.models import Photograph
 
 
 def index(request):

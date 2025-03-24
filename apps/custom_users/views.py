@@ -4,7 +4,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-from custom_users.forms import LoginForms, RegisterForms
+from apps.custom_users.forms import LoginForms, RegisterForms
 
 
 def login(request):
@@ -25,12 +25,12 @@ def login(request):
             print(f'{user=}')
             if user is not None:
                 auth.login(request, user)
-                msg = f'User was authenticated'
+                msg = f'User was authenticated {form["username"].value()}'
                 print(msg)
                 messages.success(request, msg)
                 return redirect('index')
             else:
-                msg = f"Can't authenticate the folling user: {form['username'].value()}"
+                msg = f"Can't authenticate the following user: {form['username'].value()}"
                 print(msg)
                 messages.error(request, msg)
                 return redirect('login')

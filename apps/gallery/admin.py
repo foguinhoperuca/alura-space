@@ -1,7 +1,7 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
 
-from gallery.models import Photograph
+from apps.gallery.models import Photograph
 
 
 class PhotographModelAdmin(ModelAdmin):
