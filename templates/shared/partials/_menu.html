@@ -23,8 +23,11 @@
                     <a href="{% url 'login' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Login</a>
                     <a href="{% url 'register' %}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> User Register</a>
                     <a href="#"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> More views</a>
-                    <a href="#"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> New</a>
+                    <a href="{% url 'image_new' %}"><img src="{% static '/assets/ícones/1x/Novas - ativo.png' %}"> New</a>
                     <a href="#"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Surprise me!!</a>
+                    <!-- TODO apply it to more menus -->
+                    {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Logout</a>
+                    {% endif %}
                 </nav>
             </section>

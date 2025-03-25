@@ -1,0 +1,44 @@
+
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}
+            <section class="galeria" style="margin-left: 5em">
+                <form action="{% url 'image_new' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% for field in form.visible_fields %}
+                        <div class="col-12-short col-lg-12" style="margin-bottom: 10px;">
+                            <label for="{{ field.id_for_label }}" style="color:#D9D9D9; margin-bottom: 5px;"><b>{{ field.label }}</b></label>
+                            {{ field }}
+                        </div>
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        <div class="col-12-short text-center">
+                            <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Send</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-12-short text-center">
+                            <a href="{ % url 'image_edit' %}"><button
+                                    class="btn btn-warning col-12"
+                                    style="padding: top 25px;">FIXME how
+                                    implement Edit HERE?!</button></a>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-12-short text-center">
+                            <a href="{% url 'image_delete' %}"><button class="btn btn-danger col-12" style="padding: top 5px;">Remove</button></a>
+                        </div>
+                    </div>
+                </form>
+            </section>
+<!-- TODO set the main and close divs into base html instead of all templates -->
+        </main>
+    </div>
+{% endblock %}
