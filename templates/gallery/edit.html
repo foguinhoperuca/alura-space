@@ -5,6 +5,8 @@
             <section class="galeria" style="margin-left: 5em">
                 <form action="{% url 'image_edit' photo_id %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <input type="hidden" name="id" value="{{photo_id}}" />
+                    {{photo_id}}
                     <div class="row">
                         {% for field in form.visible_fields %}
                         <div class="col-12-short col-lg-12" style="margin-bottom: 10px;">
@@ -30,7 +32,7 @@
                     <br />
                     <div class="row">
                         <div class="col-12-short text-center">
-                            <a href="{% url 'image_delete' %}"><button class="btn btn-danger col-12" style="padding: top 5px;">Remove</button></a>
+                            <a href="{% url 'image_delete' photo_id %}"><button class="btn btn-danger col-12" style="padding: top 5px;">Remove</button></a>
                         </div>
                     </div>
                 </form>

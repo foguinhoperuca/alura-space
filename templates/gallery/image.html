@@ -16,6 +16,23 @@
                             <p class="imagem__texto">{{photo.description}}</p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12-short text-center">
+                            <a href="{% url 'image_edit' photo.id %}"><button class="btn btn-warning col-12" style="padding: top 5px;">Edit</button></a>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-12-short text-center">
+                            <a href="{% url 'image_delete' photo.id %}"><button class="btn btn-danger col-12" style="padding: top 5px;">Remove</button></a>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-12-short text-center">
+                            <a href="{% url 'image_new' %}"><button class="btn btn-success col-12" style="padding: top 25px;">New</button></a>
+                        </div>
+                    </div>
                 </div>
             </section>
         </section>

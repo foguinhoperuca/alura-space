@@ -19,10 +19,8 @@ def index(request):
 
 
 def image(request, photo_id: int):
-    print(f'got {photo_id=}')
     photo = get_object_or_404(Photograph, pk=photo_id)
 
-    print(f'{photo=}')
     return render(request, 'gallery/image.html', {"photo": photo})
 
 
@@ -38,7 +36,7 @@ def search(request):
         if name_to_search:
             photos = photos.filter(name__icontains=name_to_search)
 
-    return render(request, 'gallery/search.html', {"cards": photos})
+    return render(request, 'gallery/index.html', {"cards": photos})
 
 
 def new(request):
@@ -85,7 +83,15 @@ def edit(request, photo_id: int):
     return render(request, 'gallery/edit.html', context)
 
 
-def delete(request):
-    context: Dict[str, str] = {}
+def delete(request, photo_id: int):
+    photo: Photograph = Photograph.objects.get(id=photo_id)
+    photo.delete()
+    messages.success(request, f'Photo id {photo_id} was deleted with success!!')
 
-    return render(request, 'gallery/delete.html', context)
+    return redirect('index')
+
+
+def image_filter(request, category):
+    photos = Photograph.objects.filter(published=True, category=category).order_by('-photo_date')
+
+    return render(request, 'gallery/index.html', {'cards': photos})
