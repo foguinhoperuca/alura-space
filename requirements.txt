@@ -11,3 +11,8 @@ Pillow
 asgiref
 sqlparse
 django-unfold
+
+# To integrate with 3rd party storage services:
+django-storages
+## AWS S3
+boto3
